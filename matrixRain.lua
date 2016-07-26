@@ -9,11 +9,11 @@ local length = #char
 
 local function drop(x)
     local t = {} 
-    for i=1, w + 10 do
+    for i=1, h + 10 do
         local v = i
         table.insert(t, 1, unicode.char(char[math.random(length)]))
         for j=1, 10 do
-            if v >= 1 and v < w then
+            if v >= 1 and v < h then
               gpu.set(x, v, t[j])
             end
             v = v - 1
