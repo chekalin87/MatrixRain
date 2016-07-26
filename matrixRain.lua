@@ -12,8 +12,11 @@ local function drop(x)
     local t = {} 
     while true do
         local speed = math.random()
+        while speed < 0.2 do
+            speed = math.random()
+        end
         local length = math.random(7, math.floor(h*1.5))
-        os.sleep(math.random(3, 20))
+        os.sleep(math.random(0, 10))
         for i=1, h + length do
             local v = i
             table.insert(t, 1, unicode.char(char[math.random(lengthChar)]))
@@ -22,10 +25,13 @@ local function drop(x)
                     if j == 1 then
                         gpu.setForeground(0xFFFFFF)
                         gpu.set(x, v, t[j])
-                    elseif j == length - 6 then
+                    elseif j == math.floor(length - length/3) then
                         gpu.setForeground(0x006000)
                         gpu.set(x, v, t[j]) 
-                    elseif j == length - 2  then
+                    elseif j == math.floor(length - length/6)  then
+                        gpu.setForeground(0x004000)
+                        gpu.set(x, v, t[j])
+                    elseif j == math.floor(length - length/12)  then
                         gpu.setForeground(0x002000)
                         gpu.set(x, v, t[j])
                     elseif j == 2 then
@@ -36,7 +42,7 @@ local function drop(x)
                 v = v - 1
             end
             gpu.set(x, v, " ")
-            os.sleep(speed)
+            os.sleep(speed/8)
         end
     end
 end
