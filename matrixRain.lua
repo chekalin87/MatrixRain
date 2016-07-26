@@ -17,7 +17,12 @@ local function drop(x)
             table.insert(t, 1, unicode.char(char[math.random(length)]))
             for j=1, 20 do
                 if v >= 1 and v < h then
-                  gpu.set(x, v, t[j])
+                    if j == 1 then
+                        gpu.setForeground(0xFFFFFF)
+                    else
+                        gpu.setForeground(0x00FF00)
+                    end
+                    gpu.set(x, v, t[j])
                 end
                 v = v - 1
             end
