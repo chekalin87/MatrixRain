@@ -61,6 +61,7 @@ local function drop(x)
             gpu.set(x, v, " ")
             os.sleep(speed/speedDrop)
         end
+        t = {}
     end
 end
 
