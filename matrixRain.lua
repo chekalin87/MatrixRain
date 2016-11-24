@@ -30,9 +30,9 @@ local function drop(x)
             speed = math.random()
         end
         local length = math.random(minDropLength, math.floor(maxDropLength))
-        local color1 = length - length / 3
-        local color2 =length - length / 6
-        local color3 =length - length /12
+        local color1 =math.floor(length - length / 3)
+        local color2 =math.floor(length - length / 6)
+        local color3 =math.floor(length - length /12)
         os.sleep(math.random(0, frequency))
         for i=1, h + length do
             local v = i
@@ -42,17 +42,17 @@ local function drop(x)
                     if j == 1 then
                         gpu.setForeground(0xFFFFFF)
                         gpu.set(x, v, t[j])
-                    elseif j == math.floor(color1) then
-                        gpu.setForeground(0x006000)
-                        gpu.set(x, v, t[j]) 
-                    elseif j == math.floor(color2) then
-                        gpu.setForeground(0x004000)
-                        gpu.set(x, v, t[j])
-                    elseif j == math.floor(color3) then
-                        gpu.setForeground(0x002000)
-                        gpu.set(x, v, t[j])
                     elseif j == 2 then
                         gpu.setForeground(0x00FF00)
+                        gpu.set(x, v, t[j])
+                    elseif j == color1 then
+                        gpu.setForeground(0x006000)
+                        gpu.set(x, v, t[j]) 
+                    elseif j == color2 then
+                        gpu.setForeground(0x004000)
+                        gpu.set(x, v, t[j])
+                    elseif j == color3 then
+                        gpu.setForeground(0x002000)
                         gpu.set(x, v, t[j])
                     end
                 end
@@ -78,9 +78,7 @@ gpu.setBackground(0x000000)
 gpu.setForeground(0x00FF00)
 thread.init()
 for i=1, w, 2 do
-    --thread.create(exit)
     thread.create(drop,i)
     --thread.create(drop,i)                                                      --если раскомментировать - будет больше похоже на оригинал, но с некоторыми артефактами(кому как нравится)  
 end
 exit()
---thread.waitForAll()
