@@ -32,28 +32,32 @@ local function drop(x)
         local length = math.random(minDropLength, math.floor(maxDropLength))
         local color1 =math.floor(length - length / 3)
         local color2 =math.floor(length - length / 6)
-        local color3 =math.floor(length - length /12)
+        local color3 =math.floor(length - length / 12)
         os.sleep(math.random(0, frequency))
+
+        for i=1, h + length do
+            table.insert(t, 1, unicode.char(char[math.random(lengthChar)]))
+        end
+
         for i=1, h + length do
             local v = i
-            table.insert(t, 1, unicode.char(char[math.random(lengthChar)]))
-            for j=1, length do
+            for j = 1, length do
                 if v >= 1 and v <= h then
                     if j == 1 then
                         gpu.setForeground(0xFFFFFF)
-                        gpu.set(x, v, t[j])
+                        gpu.set(x, v, t[i-j+1])
                     elseif j == 2 then
                         gpu.setForeground(0x00FF00)
-                        gpu.set(x, v, t[j])
+                        gpu.set(x, v, t[i-j+1])
                     elseif j == color1 then
                         gpu.setForeground(0x006000)
-                        gpu.set(x, v, t[j]) 
+                        gpu.set(x, v, t[i-j+1]) 
                     elseif j == color2 then
                         gpu.setForeground(0x004000)
-                        gpu.set(x, v, t[j])
+                        gpu.set(x, v, t[i-j+1])
                     elseif j == color3 then
                         gpu.setForeground(0x002000)
-                        gpu.set(x, v, t[j])
+                        gpu.set(x, v, t[i-j+1])
                     end
                 end
                 v = v - 1
