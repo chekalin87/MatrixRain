@@ -11,7 +11,7 @@ local w, h = gpu.getResolution()
 
 local frequency = 3                                                     -- частота капель (максимальная задержка в секундах)
 local speedLimit = 0                                                    -- ограничение разницы скоростей капель, от 0 до 0.95 (0 - наибольшая разница)
-local speedDrop = 20                                                    -- скорость капель
+local speedDrop = 5                                                    -- скорость капель
 local maxDropLength = 80                                                -- максимальная длина капли (в процентах от высоты монитора)
 maxDropLength = maxDropLength*h/100
 local minDropLength = 5                                                 -- минимальная длина капли в символах
