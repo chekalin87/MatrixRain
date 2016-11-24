@@ -41,8 +41,10 @@ local function drop(x)
 
         for i=1, h + length do
             gpu.setForeground(0xFFFFFF)
+            gpu.set(x, i, t[i])
             if i - 1 > 0 then
                 gpu.setForeground(0x00FF00)
+                gpu.set(x, i-1, t[i-1])
             end
             if i - color1 + 1 > 0 then
                 gpu.setForeground(0x006000)
