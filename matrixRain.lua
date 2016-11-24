@@ -10,7 +10,7 @@ local gpu = component.gpu
 local w, h = gpu.getResolution()
 
 local frequency = 3                                                     -- частота капель (максимальная задержка в секундах)
-local speedLimit = 0                                                    -- ограничение разницы скоростей капель, от 0 до 2.9 (0 - наибольшая разница)
+local speedLimit = 0                                                    -- ограничение разницы скоростей капель, от 0 до 0.95 (0 - наибольшая разница)
 local speedDrop = 20                                                    -- скорость капель
 local maxDropLength = 80                                                -- максимальная длина капли (в процентах от высоты монитора)
 maxDropLength = maxDropLength*h/100
@@ -25,7 +25,7 @@ local function drop(x)
     local t = {} 
     os.sleep(math.random(30))
     while true do
-        local speed = math.random() + math.random(0, 2)
+        local speed = math.random()
         while speed < speedLimit do
             speed = math.random()
         end
